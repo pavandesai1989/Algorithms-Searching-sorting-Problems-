@@ -1,0 +1,45 @@
+-------------------------------- Implementation ----------------------
+
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+struct activity
+{
+   int start,finish;
+};
+
+bool activitycompare(activity s1,activity s2)
+{
+   return (s1.finish<s2.finish); 
+}
+
+void printmaxactivities(activity act[],int size)
+{
+    std::sort(act,act+size,activitycompare);
+    cout<<"following activities are selected "<<endl;
+    
+    int i=0;
+    cout<<"activity is "<<act[i].start<<"  "<<act[i].finish<<endl;
+    
+    for(int j=1;j<size;j++)
+    {
+        if(act[j].start>=act[i].finish)
+        {
+          cout<<"activity is "<<act[j].start<<"  "<<act[j].finish<<endl;
+          i=j;
+        }
+    }
+}
+
+int main() 
+{ 
+    activity arr[] = {{5, 9}, {1, 2}, {3, 4}, {0, 6}, 
+                                       {5, 7}, {8, 9}}; 
+    int n = sizeof(arr)/sizeof(arr[0]); 
+    printmaxactivities(arr, n); 
+    return 0; 
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
